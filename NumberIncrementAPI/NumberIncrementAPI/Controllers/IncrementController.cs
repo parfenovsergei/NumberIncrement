@@ -30,5 +30,17 @@ namespace NumberIncrementAPI.Controllers
             return numbersDTO;
 
         }
+
+        [HttpPut("Incrementation/{id}")]
+        public async Task<List<NumberDTO>> IncrementNumber(int id, int increment)
+        {
+            var updatedNumber = await _incrementService.UpdateNumber(id, increment);
+
+            var numbers = await _incrementService.GetAllNumbers();
+
+            var numberDTO = _numberAutoMapper.ToDTO(numbers);
+
+            return numberDTO;
+        }
     }
 }

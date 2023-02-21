@@ -9,8 +9,8 @@ namespace NumberIncrementAPI.AutoMapper.NumberAutoMapper
         public List<NumberDTO> ToDTO(List<Number> numbers)
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Number, NumberDTO>()
+                .ForMember("Id", opt => opt.MapFrom(n => n.Id))
                 .ForMember("CurrentNumber", opt => opt.MapFrom(n => n.CurrentNumber)));
-
             var mapper = new Mapper(config);
 
             List<NumberDTO> readMeetups = mapper.Map<List<Number>, List<NumberDTO>>(numbers);
