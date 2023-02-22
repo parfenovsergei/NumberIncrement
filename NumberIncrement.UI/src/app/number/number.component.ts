@@ -21,6 +21,11 @@ export class NumberComponent implements OnInit {
     this.numberService
       .getNumbers()
       .subscribe((result: Numeral[]) => (this.numbers = result));
-  } 
- 
+  }
+
+  incrementNumber(number: Numeral, increment: number) : void {
+    this.numberService
+      .incrementNumber(number, increment)
+      .subscribe(() => this.getNumbers());
+  }
 }

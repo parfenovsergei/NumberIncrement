@@ -1,7 +1,7 @@
 <div>
     <ul>
-        <li *ngFor="let num of numbers">
-            <button type="button">Add value</button>
+        <li *ngFor="let num of numbers; let i = index">
+            <button type="button" (click)="incrementNumber(num, i+1)">Add value</button>
             <span>value: {{num.currentNumber}}</span>
         </li>
     </ul>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Numeral } from './numeral';
@@ -10,9 +10,22 @@ import { Numeral } from './numeral';
 export class NumberService {
   private readonly apiUrl = "https://localhost:7149/api/Increment";
 
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   constructor(private http: HttpClient) { }
 
   getNumbers() : Observable<Numeral[]> {
     return this.http.get<Numeral[]>(`${this.apiUrl}/Numbers`);
+  }
+
+  incrementNumber(number: Numeral, increment: number) : Observable<any> {
+    return this.http.put(
+      //(`${this.apiUrl}/Incrementation/${number.id}?increment=${increment}`),
+      (`${this.apiUrl}/Incrementation/${number.id}`),
+      increment,
+      this.httpOptions
+    );
   }
 }
