@@ -1,12 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Numeral } from '../numeral';
+import { NumberService } from '../number.service';
 
 @Component({
   selector: 'app-number',
   templateUrl: './number.component.html',
   styleUrls: ['./number.component.css']
 })
-export class NumberComponent {
-  numbers: Numeral [] = [{id: 1, value: 2}, {id: 2, value: 3}];
+export class NumberComponent implements OnInit {
+  numbers: Numeral [] = [];
+
+  constructor(private numberService: NumberService){}
+
+  ngOnInit(): void {
+    this.getNumbers();
+  }
+
+  getNumbers() : void {
+    this.numberService
+      .getNumbers()
+      .subscribe((result: Numeral[]) => (this.numbers = result));
+  } 
+ 
 }
