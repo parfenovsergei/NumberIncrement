@@ -8,6 +8,7 @@ using NumberIncrementAPI.Models;
 using NumberIncrementAPI.Services.Implementations;
 using NumberIncrementAPI.Services.Interfaces;
 
+var numberOrigins = "NumberOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -25,10 +26,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: "NumberOrigins",
+    options.AddPolicy(name: numberOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("http://localhost:4200/").AllowAnyHeader().AllowAnyMethod();
+                          policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
                       });
 });
 
@@ -42,7 +43,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("NumberOrigins");
+app.UseRouting();
+
+app.UseCors(numberOrigins);
 
 app.UseAuthorization();
 
