@@ -32,9 +32,9 @@ namespace NumberIncrementAPI.Controllers
         }
 
         [HttpPut("Incrementation/{id}")]
-        public async Task<List<NumberDTO>> IncrementNumber(int id, [FromBody] int increment)
+        public async Task<List<NumberDTO>> IncrementNumber(int id, [FromBody] FrontValues frontValues)
         {
-            var updatedNumber = await _incrementService.UpdateNumber(id, increment);
+            var updatedNumber = await _incrementService.UpdateNumber(id, frontValues);
 
             var numbers = await _incrementService.GetAllNumbers();
 
