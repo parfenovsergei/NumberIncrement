@@ -3,6 +3,7 @@
 using NumberIncrementAPI.DAL.Interfaces;
 using NumberIncrementAPI.Models;
 using NumberIncrementAPI.Services.Interfaces;
+using NumberIncrementAPI.ViewModels;
 
 namespace NumberIncrementAPI.Services.Implementations
 {
@@ -21,13 +22,14 @@ namespace NumberIncrementAPI.Services.Implementations
             return numbers;
         }
 
-        public async Task<Number> UpdateNumber(int id, int increment)
+        public async Task<Number> UpdateNumber(int id, FrontValues frontValues)
         {
             var number = await _numberRepository.GetAll().FirstOrDefaultAsync(n => n.Id == id);
             if (number != null)
             {
-                number.CurrentNumber += increment;
+                number.CurrentNumber += frontValues.increment;
                 number.LastUpdateDate = DateTime.Now;
+                number.DateFromFront = frontValues.DateFromFront;
 
                 var newNumber = await _numberRepository.Update(number);
 
