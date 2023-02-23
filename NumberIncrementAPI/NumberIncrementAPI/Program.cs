@@ -1,6 +1,7 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using NumberIncrementAPI.AutoMapper.NumberAutoMapper;
+
+using NumberIncrementAPI.AutoMapper;
 using NumberIncrementAPI.DAL;
 using NumberIncrementAPI.DAL.Interfaces;
 using NumberIncrementAPI.DAL.Repositories;
@@ -19,20 +20,25 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 
 builder.Services.AddScoped<IBaseRepository<Number>, NumberRepository>();
 builder.Services.AddScoped<IIncrementService, IncrementService>();
-builder.Services.AddScoped<INumberAutoMapper, NumberAutoMapper>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAutoMapper(typeof(NumberMappingProfile));
+
 var frontUrl = builder.Configuration.GetSection("FrontURL")["Url"];
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: numberOrigins,
-                      policy =>
-                      {
-                          policy.WithOrigins(frontUrl).AllowAnyHeader().AllowAnyMethod();
-                      });
-});
+builder.Services.AddCors(
+    options =>
+    {
+        options.AddPolicy(name: numberOrigins,
+            policy =>
+            {
+                policy.WithOrigins(frontUrl)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+    }
+);
 
 var app = builder.Build();
 

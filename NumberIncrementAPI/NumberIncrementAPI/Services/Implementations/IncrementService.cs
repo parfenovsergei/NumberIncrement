@@ -33,12 +33,9 @@ namespace NumberIncrementAPI.Services.Implementations
 <<<<<<< HEAD
 =======
                 number.DateFromFront = dateTime;
-
                 var newNumber = await _numberRepository.Update(number);
-
                 return await _numberRepository.Update(newNumber);
             }
-
             return null;
         }
 
@@ -50,12 +47,9 @@ namespace NumberIncrementAPI.Services.Implementations
 >>>>>>> API_Develop
                 number.CurrentNumber += increment;
                 number.LastUpdateDate = DateTime.Now;
-
                 var newNumber = await _numberRepository.Update(number);
-
                 return await _numberRepository.Update(newNumber);
             }
-
             return null;
         }
     }

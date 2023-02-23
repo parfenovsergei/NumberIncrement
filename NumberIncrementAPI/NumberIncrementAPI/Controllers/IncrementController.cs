@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
-using NumberIncrementAPI.AutoMapper.NumberAutoMapper;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+
 using NumberIncrementAPI.Models;
 using NumberIncrementAPI.Services.Interfaces;
 using NumberIncrementAPI.ViewModels;
@@ -12,21 +12,20 @@ namespace NumberIncrementAPI.Controllers
     public class IncrementController : Controller
     {
         private readonly IIncrementService _incrementService;
-        private readonly INumberAutoMapper _numberAutoMapper;
+        private readonly IMapper _mapper;
 
-        public IncrementController(IIncrementService incrementService, INumberAutoMapper numberAutoMapper)
+        public IncrementController(IIncrementService incrementService, IMapper mapper)
         {
             _incrementService = incrementService;
-            _numberAutoMapper = numberAutoMapper;
+            _mapper = mapper;
         }
 
         [HttpGet("Numbers")]
         public async Task<List<NumberDTO>> GetNumbers()
         {
             var numbers = await _incrementService.GetAllNumbers();
-            var numbersDTO = _numberAutoMapper.ToDTO(numbers);
+            var numbersDTO = _mapper.Map<List<NumberDTO>>(numbers);
             return numbersDTO;
-
         }
 
         [HttpPut("IncrementationAsync/{id}")]
@@ -36,7 +35,7 @@ namespace NumberIncrementAPI.Controllers
             return await GetNumbers();
         }
 
-        [HttpPut("ÜpdateAsyncDate/{id}")]
+        [HttpPut("ÜpdateDateAsync/{id}")]
         public async Task<List<NumberDTO>> UpdateDateAsync(int id, [FromBody] DateTime dateTime)
         {
             var updatedNumber = await _incrementService.UpdateDate(id, dateTime);
