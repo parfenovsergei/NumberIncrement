@@ -10,13 +10,12 @@ namespace NumberIncrementAPI.AutoMapper.NumberAutoMapper
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Number, NumberDTO>()
                 .ForMember("Id", opt => opt.MapFrom(n => n.Id))
-                .ForMember("CurrentNumber", opt => opt.MapFrom(n => n.CurrentNumber))
-                .ForMember("DateFromFront", opt => opt.MapFrom(n => n.DateFromFront)));
+                .ForMember("CurrentNumber", opt => opt.MapFrom(n => n.CurrentNumber)));
             var mapper = new Mapper(config);
 
-            List<NumberDTO> readNumbers = mapper.Map<List<Number>, List<NumberDTO>>(numbers);
+            List<NumberDTO> readMeetups = mapper.Map<List<Number>, List<NumberDTO>>(numbers);
 
-            return readNumbers;
+            return readMeetups;
         }
     }
 }
