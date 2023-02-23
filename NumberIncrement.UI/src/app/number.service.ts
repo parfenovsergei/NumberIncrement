@@ -22,8 +22,7 @@ export class NumberService {
 
   incrementNumber(number: Numeral, increment: number) : Observable<any> {
     return this.http.put(
-      //(`${this.apiUrl}/Incrementation/${number.id}?increment=${increment}`),
-      (`${this.apiUrl}/Incrementation/${number.id}`),
+      (`${this.apiUrl}/IncrementationAsync/${number.id}`),
       increment,
       this.httpOptions
     );

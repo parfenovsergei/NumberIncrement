@@ -1,12 +1,23 @@
-<div>
+<div class="container">
     <ul>
         <li *ngFor="let num of numbers; let i = index">
-            <button type="button" (click)="incrementNumber(num, i+1)">
+            <button mat-raised-button color="warn" (click)="incrementNumber(num, i+1)">
                 Add value
             </button>
             <span>
                 value: {{num.currentNumber}}
             </span>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <button mat-raised-button color="primary">
+                Update time
+            </button>
         </li>
     </ul>
-</div>  
+</div>
+ 
