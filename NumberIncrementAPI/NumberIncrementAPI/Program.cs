@@ -24,12 +24,13 @@ builder.Services.AddScoped<INumberAutoMapper, NumberAutoMapper>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var frontUrl = builder.Configuration.GetSection("FrontURL")["Url"];
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: numberOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+                          policy.WithOrigins(frontUrl).AllowAnyHeader().AllowAnyMethod();
                       });
 });
 

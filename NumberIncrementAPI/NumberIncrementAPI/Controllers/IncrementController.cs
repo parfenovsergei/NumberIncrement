@@ -24,26 +24,22 @@ namespace NumberIncrementAPI.Controllers
         public async Task<List<NumberDTO>> GetNumbers()
         {
             var numbers = await _incrementService.GetAllNumbers();
-
             var numbersDTO = _numberAutoMapper.ToDTO(numbers);
-
             return numbersDTO;
 
         }
 
-        [HttpPut("Incrementation/{id}")]
-        public async Task<List<NumberDTO>> IncrementNumber(int id, [FromBody] int increment)
+        [HttpPut("IncrementationAsync/{id}")]
+        public async Task<List<NumberDTO>> IncrementNumberAsync(int id, [FromBody] int increment)
         {
             var updatedNumber = await _incrementService.UpdateNumber(id, increment);
-
             return await GetNumbers();
         }
 
-        [HttpPut("ÜpdateDate /{id}")]
-        public async Task<List<NumberDTO>> UpdateDate(int id, [FromBody] DateTime dateTime)
+        [HttpPut("ÜpdateAsyncDate/{id}")]
+        public async Task<List<NumberDTO>> UpdateDateAsync(int id, [FromBody] DateTime dateTime)
         {
             var updatedNumber = await _incrementService.UpdateDate(id, dateTime);
-
             return await GetNumbers();
         }
     }
