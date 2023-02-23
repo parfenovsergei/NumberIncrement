@@ -12,7 +12,5 @@ namespace NumberIncrementAPI.DAL
         {
             Database.EnsureCreated();
         }
-
-
     }
 }
