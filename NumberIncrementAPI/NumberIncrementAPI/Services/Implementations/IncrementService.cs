@@ -21,6 +21,21 @@ namespace NumberIncrementAPI.Services.Implementations
             return numbers;
         }
 
+        public async Task<Number> UpdateDate(int id, DateTime dateTime)
+        {
+            var number = await _numberRepository.GetAll().FirstOrDefaultAsync(n => n.Id == id);
+            if (number != null)
+            {
+                number.DateFromFront = dateTime;
+
+                var newNumber = await _numberRepository.Update(number);
+
+                return await _numberRepository.Update(newNumber);
+            }
+
+            return null;
+        }
+
         public async Task<Number> UpdateNumber(int id, int increment)
         {
             var number = await _numberRepository.GetAll().FirstOrDefaultAsync(n => n.Id == id);
