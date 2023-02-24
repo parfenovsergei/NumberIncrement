@@ -7,17 +7,32 @@
             <span>
                 value: {{num.currentNumber}}
             </span>
-            <mat-form-field appearance="fill">
-                <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+            <mat-form-field>
+                <input matInput
+                    placeholder= "Select date and time"
+                    [ngxMatDatetimePicker]="picker" 
+                    [formControl]="dateControl"
+                    [min]="minDate"
+                    [max]="maxDate" 
+                    [disabled]="false"
+                >
+                <mat-hint>
+                    Current date: {{num.dateFromFront | date : 'medium' }}
+                </mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #picker 
+                    [showSpinners]="true" 
+                    [showSeconds]="true"
+                    [stepHour]="1" 
+                    [stepMinute]="1" 
+                    [stepSecond]="1" 
+                    [touchUi]="true"
+                    [enableMeridian]="false">
+                </ngx-mat-datetime-picker>
             </mat-form-field>
-            <button mat-raised-button color="primary">
+            <button mat-raised-button color="primary" (click)="updateDate(num.id, dateControl.value)">
                 Update time
             </button>
         </li>
     </ul>
 </div>
- 

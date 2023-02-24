@@ -27,4 +27,12 @@ export class NumberService {
       this.httpOptions
     );
   }
+
+  updateDate(id: number, datetime: Date){
+    return this.http.put(
+      (`${this.apiUrl}/ÜpdateDateAsync/${id}`),
+      datetime,
+      this.httpOptions
+    );
+  }
 }
