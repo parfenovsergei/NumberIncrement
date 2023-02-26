@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { environment } from 'src/environments/environment';
 import { Numeral } from './numeral';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NumberService {
-  private readonly apiUrl = "https://localhost:7149/api/Increment";
-
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -17,12 +16,12 @@ export class NumberService {
   constructor(private http: HttpClient) { }
 
   getNumbers() : Observable<Numeral[]> {
-    return this.http.get<Numeral[]>(`${this.apiUrl}/Numbers`);
+    return this.http.get<Numeral[]>(`${environment.apiUrl}/numbers`);
   }
 
   incrementNumber(number: Numeral, increment: number) : Observable<any> {
     return this.http.put(
-      (`${this.apiUrl}/IncrementationAsync/${number.id}`),
+      (`${environment.apiUrl}/numbers/${number.id}`),
       increment,
       this.httpOptions
     );
@@ -30,7 +29,7 @@ export class NumberService {
 
   updateDate(id: number, datetime: Date){
     return this.http.put(
-      (`${this.apiUrl}/ÜpdateDateAsync/${id}`),
+      (`${environment.apiUrl}/dates/${id}`),
       datetime,
       this.httpOptions
     );
