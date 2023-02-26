@@ -31,8 +31,8 @@ namespace NumberIncrementAPI.Services.Implementations
             if (number != null)
             {
                 number.DateFromFront = dateTime;
-                var newNumber = await _numberRepository.Update(number);
-                return await _numberRepository.Update(newNumber);
+                var newNumber = await _numberRepository.UpdateAsync(number);
+                return await _numberRepository.UpdateAsync(newNumber);
             }
             return null;
         }
@@ -46,8 +46,8 @@ namespace NumberIncrementAPI.Services.Implementations
             {
                 number.CurrentNumber += increment;
                 number.LastUpdateDate = DateTime.Now;
-                var newNumber = await _numberRepository.Update(number);
-                return await _numberRepository.Update(newNumber);
+                var newNumber = await _numberRepository.UpdateAsync(number);
+                return await _numberRepository.UpdateAsync(newNumber);
             }
             return null;
         }
