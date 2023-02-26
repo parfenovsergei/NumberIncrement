@@ -3,6 +3,6 @@
     public interface IBaseRepository<T>
     {
         IQueryable<T> GetAll();
-        Task<T> Update(T entity);
+        Task<T> UpdateAsync(T entity);
     }
 }

@@ -4,8 +4,8 @@ namespace NumberIncrementAPI.Services.Interfaces
 {
     public interface IIncrementService
     {
-        Task<List<Number>> GetAllNumbers();
-        Task<Number> UpdateNumber(int id, int increment);
-        Task<Number> UpdateDate(int id, DateTime dateTime);
+        Task<List<Number>> GetAllNumbersAsync();
+        Task<Number> UpdateNumberAsync(int id, int increment);
+        Task<Number> UpdateDateAsync(int id, DateTime dateTime);
     }
 }
