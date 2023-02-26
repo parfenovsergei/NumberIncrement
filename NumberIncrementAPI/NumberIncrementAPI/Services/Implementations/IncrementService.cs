@@ -15,15 +15,19 @@ namespace NumberIncrementAPI.Services.Implementations
             _numberRepository = numberRepository;
         }
 
-        public async Task<List<Number>> GetAllNumbers()
+        public async Task<List<Number>> GetAllNumbersAsync()
         {
-            var numbers = await _numberRepository.GetAll().ToListAsync();
+            var numbers = await _numberRepository
+                .GetAll()
+                .ToListAsync();
             return numbers;
         }
 
-        public async Task<Number> UpdateDate(int id, DateTime dateTime)
+        public async Task<Number> UpdateDateAsync(int id, DateTime dateTime)
         {
-            var number = await _numberRepository.GetAll().FirstOrDefaultAsync(n => n.Id == id);
+            var number = await _numberRepository
+                .GetAll()
+                .FirstOrDefaultAsync(n => n.Id == id);
             if (number != null)
             {
                 number.DateFromFront = dateTime;
@@ -33,9 +37,11 @@ namespace NumberIncrementAPI.Services.Implementations
             return null;
         }
 
-        public async Task<Number> UpdateNumber(int id, int increment)
+        public async Task<Number> UpdateNumberAsync(int id, int increment)
         {
-            var number = await _numberRepository.GetAll().FirstOrDefaultAsync(n => n.Id == id);
+            var number = await _numberRepository
+                .GetAll()
+                .FirstOrDefaultAsync(n => n.Id == id);
             if (number != null)
             {
                 number.CurrentNumber += increment;

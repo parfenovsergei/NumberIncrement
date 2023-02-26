@@ -20,26 +20,26 @@ namespace NumberIncrementAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("Numbers")]
-        public async Task<List<NumberDTO>> GetNumbers()
+        [HttpGet("numbers")]
+        public async Task<List<NumberDTO>> GetNumbersAsync()
         {
-            var numbers = await _incrementService.GetAllNumbers();
+            var numbers = await _incrementService.GetAllNumbersAsync();
             var numbersDTO = _mapper.Map<List<NumberDTO>>(numbers);
             return numbersDTO;
         }
 
-        [HttpPut("IncrementationAsync/{id}")]
+        [HttpPut("numbers/{id}")]
         public async Task<List<NumberDTO>> IncrementNumberAsync(int id, [FromBody] int increment)
         {
-            var updatedNumber = await _incrementService.UpdateNumber(id, increment);
-            return await GetNumbers();
+            var updatedNumber = await _incrementService.UpdateNumberAsync(id, increment);
+            return await GetNumbersAsync();
         }
 
-        [HttpPut("ÜpdateDateAsync/{id}")]
+        [HttpPut("dates/{id}")]
         public async Task<List<NumberDTO>> UpdateDateAsync(int id, [FromBody] DateTime dateTime)
         {
-            var updatedNumber = await _incrementService.UpdateDate(id, dateTime);
-            return await GetNumbers();
+            var updatedNumber = await _incrementService.UpdateDateAsync(id, dateTime);
+            return await GetNumbersAsync();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace NumberIncrementAPI.DAL.Repositories
             return _db.Numbers;
         }
 
-        public async Task<Number> Update(Number entity)
+        public async Task<Number> UpdateAsync(Number entity)
         {
             _db.Numbers.Update(entity);
             await _db.SaveChangesAsync();
