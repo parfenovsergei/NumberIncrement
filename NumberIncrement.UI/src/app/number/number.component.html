@@ -13,25 +13,19 @@
                     [ngxMatDatetimePicker]="picker" 
                     [formControl]="dateControl"
                     [min]="minDate"
-                    [max]="maxDate" 
-                    [disabled]="false"
+                    [max]="maxDate"
                 >
                 <mat-hint>
                     Current date: {{num.dateFromFront | date : 'medium' }}
                 </mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
                 <ngx-mat-datetime-picker #picker 
-                    [showSpinners]="true" 
                     [showSeconds]="true"
-                    [stepHour]="1" 
-                    [stepMinute]="1" 
-                    [stepSecond]="1" 
-                    [touchUi]="true"
-                    [enableMeridian]="false">
+                    [touchUi]="true">
                 </ngx-mat-datetime-picker>
             </mat-form-field>
             <button mat-raised-button color="primary" (click)="updateDate(num.id, dateControl.value)">
-                Update time
+                Update date
             </button>
         </li>
     </ul>

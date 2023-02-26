@@ -13,12 +13,13 @@ import { NumberService } from '../number.service';
 })
 export class NumberComponent implements OnInit {
   numbers: Numeral [] = [];
-  @ViewChild('picker') picker: any;
   public minDate: Date = new Date(1990, 1, 1, 0, 0, 0);
   public maxDate: Date = new Date(2500, 1, 1, 0, 0, 0);
-  dateControl: FormControl = new FormControl(null);
+  dateControl: FormControl;
 
-  constructor(private numberService: NumberService){}
+  constructor(private numberService: NumberService){
+    this.dateControl = new FormControl(null);
+  }
 
   ngOnInit(): void {
     this.getNumbers();
