@@ -1,0 +1,14 @@
+li {
+    list-style-type: none;
+    margin-bottom: 70px;
+}
+
+span{
+    font-size: 24px;
+    margin-left: 5px;
+    margin-right: 25px;
+}
+
+button{
+    margin-left: 10px;
+}

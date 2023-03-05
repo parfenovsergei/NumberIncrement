@@ -1,0 +1,32 @@
+<div class="container">
+    <ul>
+        <li *ngFor="let num of numbers; let i = index">
+            <button mat-raised-button color="warn" (click)="incrementNumber(num, i+1)">
+                Add value
+            </button>
+            <span>
+                value: {{num.currentNumber}}
+            </span>
+            <mat-form-field>
+                <input matInput
+                    placeholder= "Select date and time"
+                    [ngxMatDatetimePicker]="picker" 
+                    [formControl]="dateControl"
+                    [min]="minDate"
+                    [max]="maxDate"
+                >
+                <mat-hint>
+                    Current date: {{num.dateFromFront | date : 'medium' }}
+                </mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #picker 
+                    [showSeconds]="true"
+                    [touchUi]="true">
+                </ngx-mat-datetime-picker>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="updateDate(num.id, dateControl.value)">
+                Update date
+            </button>
+        </li>
+    </ul>
+</div>

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using NumberIncrementAPI.Models;
-using NumberIncrementAPI.ViewModels;
+﻿using NumberIncrementAPI.Models;
 
 namespace NumberIncrementAPI.Services.Interfaces
 {
